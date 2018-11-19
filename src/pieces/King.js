@@ -38,7 +38,7 @@ export function King(Alliance){
       if(!this.hasMoved &&  board[lRook].piece.name=== "Rook" && !board[lRook].piece.hasMoved){
         var freeWay = true
         for( var i = 1; i<=3; i++){
-          var pos = position- i
+          var pos = parseInt(position)- i
           if(!board[pos].isEmpty || logic.isUnderAttack(board, pos, this.alliance)){
             freeWay = false
             i = 4
@@ -53,7 +53,7 @@ export function King(Alliance){
       if(!this.hasMoved &&  board[rRook].piece.name=== "Rook" && !board[rRook].piece.hasMoved){
         var freeWay = true
         for( var i = 1; i<=2; i++){
-          var pos = position + i
+          var pos = parseInt(position) + i
           if(!board[pos].isEmpty || logic.isUnderAttack(board, pos, this.alliance)){
             freeWay = false
             i = 4
