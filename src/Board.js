@@ -160,19 +160,16 @@ class Board extends Component {
 
     this.setState(function () {
       let board = []
-      for(let i =0 ; i < 110 ; i++){
-        if(i < 21 || i > 88  ){
-            board.push(OffTile(i))
-        }else if((i+1)%10 === 0 || i%10 ===0){
-            board.push(OffTile(i))
-        }else{
-        board.push(EmptyTile(i))
-      }
-      }
-
-
+        for(let i =0 ; i < 110 ; i++){
+          if(i < 21 || i > 88  ){
+              board.push(OffTile(i))
+          }else if((i+1)%10 === 0 || i%10 ===0){
+              board.push(OffTile(i))
+          }else{
+          board.push(EmptyTile(i))
+          }
+        }
       board = this.buildNewBoard(board)
-
       return({board})
     })
   }
