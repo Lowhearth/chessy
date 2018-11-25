@@ -32,6 +32,7 @@ class Board extends Component {
       this.logic = new Logic()
   }
 
+//Board Initial Configuration
   buildNewBoard(board){
 
     board[21] = Tile(21, Rook(1))
@@ -73,6 +74,10 @@ class Board extends Component {
     return board
   }
 
+// Method that will be called from the dummy component and will be responsible for setting the state of the selectedTile
+// and trigger the execution of a movement if necessary.
+
+
   selectTile(newPosition, piece){
     if(!this.state.gameEnded){
       if(this.state.selectedTile.length === 0){
@@ -106,6 +111,10 @@ class Board extends Component {
       }
     }
   }
+
+
+//triggered by SelectedTile or ( in future implementations ) by the server.
+//this method allows to move the pieces with barely any formal verfication.
 
   executeMove(position){
 
@@ -148,16 +157,19 @@ class Board extends Component {
                 turn: turn})})
 
   }
-
+  //Methods used to render the dummy components
   drawTile(tile){
     return(<Square tile={tile} piece={tile.piece} position ={tile.coordinate} handleClick={this.selectTile.bind(this)}/>)
   }
   drawEmptyTile(tile){
     return (<Square tile={tile} piece={tile.piece} position ={tile.coordinate} handleClick={this.selectTile.bind(this)}/>)
   }
+ //Methods used to render the dummy components
+
   componentWillMount(){
     const logic = new Logic()
-
+    //To avoid complex interaction with posible moves calculated for the pieces jumping across the borders of the board
+    //an initial board of  110 squares is built. The actual playable squares are created with the class EmptyTile, the rest with OffTile
     this.setState(function () {
       let board = []
         for(let i =0 ; i < 110 ; i++){
@@ -174,6 +186,7 @@ class Board extends Component {
     })
   }
 
+  //Since we dont need to display the Offtiles, at the view level we filter those squares:
   displayBoard (){
     let boardDisplay = []
     let board = this.state.board
